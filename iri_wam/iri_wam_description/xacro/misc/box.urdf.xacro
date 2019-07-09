@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="box" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="box_tx" value="0.0" />
+  <xacro:property name="box_ty" value="0.0" />
+  <xacro:property name="box_tz" value="0.0" />
+
+  <xacro:property name="box_qr" value="0.0" />
+  <xacro:property name="box_qp" value="0.0" />
+  <xacro:property name="box_qy" value="0.0" />
+
+  <xacro:property name="size_x" value="0.25" />
+  <xacro:property name="size_y" value="0.25" />
+  <xacro:property name="size_z" value="0.50" />
+
+  <xacro:property name="mass" value="1" />
+
+  <link name="box">
+    <inertial>
+      <mass value="${mass}" />
+      <!-- center of mass (com) is defined w.r.t. link local coordinate system -->
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
+    </inertial>
+    <visual>
+      <!-- visual origin is defined w.r.t. link local coordinate system -->
+      <origin xyz="${box_tx} ${box_ty} ${box_tz}" rpy="${box_qr} ${box_qp} ${box_qy}" />
+      <geometry>
+        <box size="${size_x} ${size_y} ${size_z}" />
+      </geometry>
+    </visual>
+    <collision>
+      <!-- collision origin is defined w.r.t. link local coordinate system -->
+     <origin xyz="${box_tx} ${box_ty} ${box_tz}" rpy="${box_qr} ${box_qp} ${box_qy}" />
+      <geometry>
+         <box size="${size_x} ${size_y} ${size_z}" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="box">
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+ </robot>

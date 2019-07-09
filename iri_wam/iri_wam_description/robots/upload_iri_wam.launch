@@ -1,0 +1,10 @@
+<launch>
+    <!-- send iri_wam urdf to param server -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find iri_wam_description)/xacro/wam.urdf.xacro'" />
+
+    <!-- the semantic description that corresponds to the URDF -->
+<!--  NOT YET IMPLEMENTED
+    <param name="robot_description_semantic" textfile="$(find iri_wam_description)/robots/wam.srdf" />
+-->
+
+</launch>

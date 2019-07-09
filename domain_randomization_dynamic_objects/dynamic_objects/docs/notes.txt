@@ -1,0 +1,1 @@
+gz topic -e /gazebo/default/visual

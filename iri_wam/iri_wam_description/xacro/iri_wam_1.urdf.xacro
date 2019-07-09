@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:macro name="wam1" params="prefix parent">
+
+    <link name="${prefix}_link_1">
+        <inertial>
+            <mass value="8.3936" />
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <inertia ixx="0.5" ixy="0.0" ixz="0.0"
+                     iyy="0.5" iyz="0.0"
+                     izz="0.5" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry name="${prefix}_link_1_visual">
+                <mesh filename="package://iri_wam_description/mesh/wam1.stl" scale="1.0 1.0 1.0" />
+            </geometry>
+            <material name="Grey" >
+                <color rgba="0.75 0.75 0.75 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <geometry name="${prefix}_link_1_collision">
+                <mesh filename="package://iri_wam_description/mesh/wam1_collision.stl" scale="1.0 1.0 1.0" />
+<!--                <box size="0.20 0.40 0.40"/> -->
+            </geometry>
+            <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+        </collision>
+    </link>
+
+    <gazebo reference="${prefix}_link_1">
+        <material>Gazebo/Grey</material>
+        <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <joint name="${prefix}_joint_1" type="revolute">
+        <parent link="${parent}"/>
+        <child link="${prefix}_link_1"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-2.6" upper="2.6" effort="75" velocity="2.0"/>
+        <!-- <safety_controller k_velocity="0.5"/> -->
+        <dynamics damping="100"/>
+    </joint>
+
+    <transmission name="tran_1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_joint_1">
+       <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      	<mechanicalReduction>50</mechanicalReduction>
+        <motorTorqueConstant>1</motorTorqueConstant>
+      <!-- <pulsesPerRevolution>90000</pulsesPerRevolution> -->
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+
+</robot>

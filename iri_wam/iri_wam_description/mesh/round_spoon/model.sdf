@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="round_spoon">
+    <static>0</static>
+    <link name="link">
+      <inertial>
+	<pose>0.03 0.0 0.0035 0.0 0.0 0.0</pose>
+        <mass>0.25</mass>
+        <inertia> <!-- interias are tricky to compute -->
+          <!-- http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/ -->
+          <ixx>0.000033719</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.001305175</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.001322294</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://round_spoon/meshes/round_soup_spoon.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://round_spoon/meshes/round_soup_spoon.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

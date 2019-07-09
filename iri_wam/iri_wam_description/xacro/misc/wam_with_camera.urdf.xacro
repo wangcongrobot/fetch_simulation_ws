@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://www.ros.org/wiki/xacro"
+       name="iri_wam">
+
+  <!-- LINKS   -->
+<!--  <xacro:include filename="$(find iri_wam_description)/xacro/wambase.urdf.xacro" />
+-->
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam0.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam1.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam2.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam3.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam4.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam5.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam6.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wam7.urdf.xacro" />
+  <xacro:include filename="$(find iri_wam_description)/xacro/wamtcp.urdf.xacro" />
+
+  <!-- Forward facing camera -->
+  <xacro:include filename="$(find iri_wam_description)/xacro/misc/generic_camera.urdf.xacro" />
+
+<!--
+  <xacro:wambase>
+  </xacro:wambase>
+-->
+  <xacro:wam0>
+  </xacro:wam0>
+  <xacro:wam1 parent="wam_link0">
+  </xacro:wam1>
+  <xacro:wam2 parent="wam_link1">
+  </xacro:wam2>
+  <xacro:wam3 parent="wam_link2">
+  </xacro:wam3>
+  <xacro:wam4 parent="wam_link3">
+  </xacro:wam4>
+  <xacro:wam5 parent="wam_link4">
+  </xacro:wam5>
+  <xacro:wam6 parent="wam_link5">
+  </xacro:wam6>
+  <xacro:wam7 parent="wam_link6">
+  </xacro:wam7>
+  <xacro:wamtcp parent="wam_link7">
+  </xacro:wamtcp>
+
+<!-- Forward facing camera -->
+  <xacro:generic_camera name="front_cam" parent="wam_link7" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="10" res_x="320" res_y="240" image_format="R8G8B8" hfov="90">
+  <origin xyz="0.05 0.0 -0.06" rpy="0 0 0"/>
+  </xacro:generic_camera>
+
+
+
+</robot>

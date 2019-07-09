@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <!-- rostopic echo /gazebo/link_states/name, to get he names of each model in scene-->
+
+    <node name="gazebo_link_pose_3" type="models_tracker.py" pkg="models_world_tracker" output="screen">
+        <param name="link_name" value="sjtu_drone::base_link" />
+    </node>
+
+    <node name="gazebo_link_pose_4" type="models_tracker.py" pkg="models_world_tracker" output="screen">
+        <param name="link_name" value="drone_ring_2::link" />
+    </node>
+
+    <node name="model_reached_goal_2" type="model_reached_goal.py" pkg="models_world_tracker" output="screen">
+        <param name="vehicle_name" value="sjtu_drone_base_link" />
+        <param name="goal_name" value="drone_ring_2_link" />
+        <param name="publish_rate" value="10.0" />
+        <param name="pose_epsilon" value="0.6" />
+
+    </node>
+
+
+</launch>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<robot name="table" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="table_height" value="0.9" />
+  <xacro:property name="table_width" value="1.2" />
+  <xacro:property name="table_depth" value="0.5" />
+  
+  <xacro:property name="table_x" value="0.0" />
+  <xacro:property name="table_y" value="0.0" />
+  <xacro:property name="table_z" value="0.0" />
+  <xacro:property name="table_top_thickness" value="0.05"/>
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  
+  <link name ="world" />
+
+  <link name="leg_1">
+    <inertial>
+      <mass value="1.0" />
+      <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial> 
+    <visual>
+      <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 ${M_PI /2} 0"/>
+      <geometry>
+        <box size="${table_depth}  ${table_width} ${table_top_thickness}" />
+      </geometry>
+    </visual> 
+    <collision>
+       <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 ${M_PI /2} 0"/>
+      <geometry>
+        <box size="${table_depth} ${table_width} ${table_top_thickness}" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="table_fix1" type="fixed">
+     <parent link="world"/>
+     <child link="leg_1"/>
+     <origin xyz="0 0 ${table_depth/2}" rpy="0 0 0" />
+  </joint> 
+  <gazebo reference="leg_1">
+    <material>Gazebo/LightWood</material>
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+
+  <link name="table_top_link">
+    <inertial>
+      <mass value="1.0" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1" ixy="0"  ixz="0" iyy="1" iyz="0"  izz="1" />
+    </inertial> 
+    <visual>
+       <origin xyz="${table_depth/2-table_top_thickness/2} 0 -${table_depth/2-table_top_thickness/2}" rpy="0 0 ${M_PI /2}"/>
+      <geometry>
+        <box size="${table_width} ${table_depth} ${table_top_thickness}" />
+      </geometry>
+    </visual> 
+    <collision>
+      <origin xyz="${table_depth/2-table_top_thickness/2} 0 -${table_depth/2-table_top_thickness/2}" rpy="0 0 ${M_PI /2}"/>
+      <geometry>
+        <box size="${table_width} ${table_depth} ${table_top_thickness}" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="table_fix2" type="fixed">
+    <parent link="leg_1"/>
+    <child link="table_top_link"/>
+    <origin xyz="0 0 ${table_depth}" rpy="0 0 0" />
+  </joint> 
+  <gazebo reference="table_top_link">
+    <material>Gazebo/LightWood</material>
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+
+  <link name="leg_2">
+    <inertial>
+      <mass value="1.0" />
+      <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial> 
+    <visual>
+      <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_width} ${table_depth} ${table_top_thickness}" />
+      </geometry>
+    </visual> 
+    <collision>
+       <origin xyz="${table_x} ${table_y} ${table_z}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_width} ${table_depth} ${table_top_thickness}" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="table_fix3" type="fixed">
+    <parent link="table_top_link"/>
+    <child link="leg_2"/>
+    <origin xyz="${table_depth-table_top_thickness} 0 0" rpy="${M_PI /2} 0 ${M_PI /2}" />
+  </joint> 
+  <gazebo reference="leg_2">
+    <material>Gazebo/LightWood</material>
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+
+</robot>

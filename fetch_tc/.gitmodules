@@ -1,0 +1,3 @@
+[submodule "moveit_simple_grasps"]
+	path = moveit_simple_grasps
+	url = https://aezquerro@bitbucket.org/theconstructcore/moveit_simple_grasps.git

@@ -1,0 +1,165 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    
+    <include>
+      <uri>model://demo_cube</uri>
+      <name>demo_cube1</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://demo_cube</uri>
+      <name>demo_cube2</name>
+      <pose>0.1 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://demo_cube</uri>
+      <name>demo_cube3</name>
+      <pose>0.2 0 0 0 0 0</pose>
+    </include>
+    
+    <model name="demo_cube_X">
+        <static>0</static>
+        <link name='link'>
+          <inertial>
+            <mass>0.25</mass>
+            <inertia>
+              <ixx>0.001</ixx>
+              <ixy>0.000000</ixy>
+              <ixz>0.000000</ixz>
+              <iyy>0.001</iyy>
+              <iyz>0.000000</iyz>
+              <izz>0.001</izz>
+            </inertia>
+          </inertial>
+          <collision name='collision'>
+            <geometry>
+              <box>
+                <size>0.060 0.060 0.060</size>
+              </box>
+            </geometry>
+            <surface>
+              <friction>
+                <ode>
+                  <mu>30.0</mu>
+                  <mu2>30.0</mu2>
+                </ode>
+              </friction>
+              <contact>
+                <ode>
+                  <kp>1000000.0</kp>
+                  <kd>100.0</kd>
+                  <max_vel>1.0</max_vel>
+                  <min_depth>0.002</min_depth>
+                </ode>
+              </contact>
+            </surface>
+          </collision>
+          <visual name='visual'>
+            <geometry>
+              <box>
+                <size>0.060 0.060 0.060</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>1 0 0 1</ambient>
+              <diffuse>1 0 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
+              <emissive>0 0 0 0</emissive>
+            </material>
+          </visual>
+          <velocity_decay>
+            <linear>0.000000</linear>
+            <angular>0.000000</angular>
+          </velocity_decay>
+          <self_collide>0</self_collide>
+          <kinematic>0</kinematic>
+          <gravity>1</gravity>
+        </link>
+    </model>
+    
+    
+    
+    
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    
+    <light name='user_point_light_0' type='point'>
+      <pose frame=''>0.573839 -0.613666 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <!--
+    <light name='user_spot_light_0' type='spot'>
+      <pose frame=''>-1.7095 -0.748352 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0 0 -1</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <spot>
+        <inner_angle>0.6</inner_angle>
+        <outer_angle>1</outer_angle>
+        <falloff>1</falloff>
+      </spot>
+    </light>
+
+    <light name='user_directional_light_0' type='directional'>
+      <pose frame=''>0.980035 1.429 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.1 0.1 -0.9</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+    </light>
+    -->
+    
+    
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+    
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    
+
+    <!-- reference to your plugin -->
+    <plugin name="dynamic_world_plugin" filename="libdynamic_world_plugin.so">
+      <update_frequency>1.0</update_frequency>
+    </plugin>
+    
+  </world>
+</sdf>

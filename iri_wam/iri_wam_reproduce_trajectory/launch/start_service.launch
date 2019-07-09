@@ -1,0 +1,10 @@
+<launch>
+
+  <node pkg ="iri_wam_reproduce_trajectory"
+	type="iri_wam_reproduce_trajectory_node"
+        name="iri_wam_reproduce_trajectory"
+        output="screen">
+  </node>
+
+</launch>
+

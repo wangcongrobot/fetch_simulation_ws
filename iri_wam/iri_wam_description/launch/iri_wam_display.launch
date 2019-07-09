@@ -1,0 +1,38 @@
+<!--
+  iri_wam_display.launch model:=robot.urdf rviz:=true stpub:=true xacro:=False
+ -->
+<launch>
+
+  <!-- arguments -->
+  <arg name="robot" default="esautomatix" />
+  <arg name="xacro" default="True" />
+  <arg name="model" default="$(find iri_wam_description)/xacro/iri_wam.urdf.xacro"/>
+  <arg name="stpub" default="True" />
+  <arg name="rviz"  default="True" />
+  <arg name="config" default="model.rviz" />
+
+  <!-- robot_description parameter -->
+  <param unless="$(arg xacro)" name="robot_description" textfile="$(arg model)" />
+
+  <param if="$(arg xacro)" name="robot_description" command="$(find xacro)/xacro.py '$(arg model)'" />
+
+  <!-- state publisher for the robot -->
+  <node if="$(arg stpub)"
+        pkg="robot_state_publisher"
+        type="state_publisher"
+        name="iri_wam_state_publisher" >
+        <!--param name="~tf_prefix" value="esautomatix" type="str"/-->
+        <param name="~publish_frequency" value="10" />
+  </node>
+  <node if="$(arg stpub)"
+        pkg="joint_state_publisher"
+        type="joint_state_publisher"
+        name="iri_wam_joint_state_publisher" >
+        <param name="use_gui" value="true"/>
+  </node>
+
+  <!-- Rviz node -->
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find iri_wam_description)/config/rviz/$(arg config)"/>
+
+</launch>

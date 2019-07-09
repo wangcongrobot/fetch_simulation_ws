@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.0" />
+    <arg name="roll" default="0.0"/>
+    <arg name="pitch" default="0.0"/>
+    <arg name="yaw" default="0.0"/>
+
+  <param command="$(find xacro)/xacro --inorder '$(find iri_wam_description)/xacro/iri_wam.urdf.xacro'" name="robot_description" />
+  <node args="-urdf -model iri_wam -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" name="urdf_spawner" output="screen" pkg="gazebo_ros" respawn="false" type="spawn_model" />
+  <include file="$(find iri_wam_gazebo)/launch/iri_wam_control.launch" />
+</launch>

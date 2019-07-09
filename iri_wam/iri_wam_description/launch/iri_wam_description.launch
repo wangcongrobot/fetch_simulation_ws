@@ -1,0 +1,6 @@
+<launch>
+    <arg name="ROBOT"    default="iri_wam" />
+
+    <!-- send iri_wam urdf to param server -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find iri_wam_description)/xacro/$(arg ROBOT).urdf.xacro'" />
+</launch>

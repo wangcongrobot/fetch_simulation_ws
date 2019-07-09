@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+
+
+  <arg default="false" name="paused" />
+  <arg default="true" name="use_sim_time" />
+  <arg default="true" name="gui" />
+  <arg default="false" name="headless" />
+  <arg default="false" name="debug" />
+
+  <arg name="put_robot_in_world" default="false" />
+    <arg name="put_robot_in_world_package" default="" />
+    <arg name="put_robot_in_world_launch" default="" />
+
+    <arg name="x" default="-0.08" />
+    <arg name="y" default="-0.09" />
+    <arg name="z" default="0.785" />
+    <arg name="roll" default="0.0"/>
+    <arg name="pitch" default="0.0"/>
+    <arg name="yaw" default="0.0"/>
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find iri_wam_gazebo)/worlds/iri_wam_no_balls.world" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+  </include>
+
+  <node args="1.9 0.05 0.63 1.6 0.0 -2.2 /iri_wam_link_footprint /camera_depth_optical_frame 20" name="kinect_base_link" pkg="tf" type="static_transform_publisher" />
+
+<group if="$(arg put_robot_in_world)">
+        <include file="$(eval find(put_robot_in_world_package) + '/launch/' + put_robot_in_world_launch)">
+            <arg name="x" value="$(arg x)" />
+            <arg name="y" value="$(arg y)" />
+            <arg name="z" value="$(arg z)" />
+            <arg name="roll" value="$(arg roll)"/>
+            <arg name="pitch" value="$(arg pitch)"/>
+            <arg name="yaw" value="$(arg yaw)" />
+        </include>
+    </group>
+
+
+</launch>

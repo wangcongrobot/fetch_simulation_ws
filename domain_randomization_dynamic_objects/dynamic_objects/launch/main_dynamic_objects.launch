@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find dynamic_objects)/worlds/dynamic_objects_with_camera_cornercenter.world"/>
+    <arg name="verbose" value="true" />
+  </include>
+
+  <!--
+  <include file="$(find gurdy_description)/launch/gurdy_complete.launch"/>
+
+
+  <include file="$(find pi_robot_pkg)/launch/spawn_robot_v2.launch">
+    <arg name="x" value="0.0" />
+    <arg name="y" value="0.0" />
+    <arg name="z" value="0.0" />
+
+    <arg name="urdf_robot_file" value="$(find pi_robot_pkg)/urdf/pi_robot_v2.urdf" />
+    <arg name="robot_name" value="pi_robot" />
+  </include>
+  -->
+
+</launch>

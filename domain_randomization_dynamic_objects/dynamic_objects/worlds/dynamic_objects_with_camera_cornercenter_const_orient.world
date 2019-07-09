@@ -1,0 +1,309 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://demo_table</uri>
+      <name>demo_table1</name>
+      <pose>0.3 0.3 0.3 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://rubbish_bin</uri>
+      <name>rubbish_bin1</name>
+      <pose>1.0 1.0 0.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://demo_spam</uri>
+      <name>demo_spam1</name>
+      <pose>-0.2 0.2 0.7 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://demo_cube</uri>
+      <name>demo_cube1</name>
+      <pose>-0.1 -0.1 0.7 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cone</uri>
+      <name>cone1</name>
+      <pose>0.2 0.2 0.7 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://demo_cylinder</uri>
+      <name>demo_cylinder1</name>
+      <pose>0.2 -0.2 0.7 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://prism_hex</uri>
+      <name>prism_hex1</name>
+      <pose>0.2 -0.2 0.7 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://prism_tri</uri>
+      <name>prism_tri1</name>
+      <pose>0.1 0.2 0.8 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tetrahedron</uri>
+      <name>tetrahedron1</name>
+      <pose>0.1 0.0 0.9 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tetrahedron_regular</uri>
+      <name>tetrahedron_regular1</name>
+      <pose>-0.1 0.0 0.9 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://dodecahedron</uri>
+      <name>dodecahedron1</name>
+      <pose>0.2 0.2 0.7 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://gears</uri>
+      <name>gears1</name>
+      <pose>-0.1 0.0 0.9 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://suzanne</uri>
+      <name>suzanne1</name>
+      <pose>-0.1 0.0 0.9 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+
+    <light name='user_point_light_0' type='point'>
+      <pose frame=''>0.573839 -0.613666 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+
+    <light name='user_point_light_1' type='point'>
+      <pose frame=''>0.573839 -0.613666 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+
+    <light name='user_spot_light_0' type='spot'>
+      <pose frame=''>-1.7095 -0.748352 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0 0 -1</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <spot>
+        <inner_angle>0.6</inner_angle>
+        <outer_angle>1</outer_angle>
+        <falloff>1</falloff>
+      </spot>
+    </light>
+
+    <model name='rgb_cam'>
+      <static>1</static>
+      <pose frame=''>-0.415121 0.3 1.092078 0 0.6991 0</pose>
+      <link name='rgb_camera'>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>8.41666666667e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.08333333333e-05</iyy>
+            <iyz>0</iyz>
+            <izz>0.000113333333333</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.060 0.1 0.010</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.060 0.1 0.010</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>true</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="camera_in_ros">
+            <robotNamespace>dynamic_objects</robotNamespace>
+            <cameraName>camera</cameraName>
+            <imageTopicName>raw_image</imageTopicName>
+            <cameraInfoTopicName>info_image</cameraInfoTopicName>
+            <FrameName>cameraImage</FrameName>
+            <Cy>0</Cy>
+            <Cx>0</Cx>
+            <updateRate>10.0</updateRate>
+          </plugin>
+        </sensor>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+
+    <joint name = "joint_to_world" type="fixed">
+      <parent>world</parent>
+      <child>rgb_camera::link</child>
+    </joint>
+
+
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+
+    <!-- reference to your plugin -->
+    <plugin name="dynamic_world_plugin" filename="libdynamic_world_plugin.so">
+      <update_frequency>1.0</update_frequency>
+      
+      <model_to_track_name>demo_spam1</model_to_track_name>
+      
+      <model_to_ignore_randcolours>fetch,rgb_cam</model_to_ignore_randcolours>
+      <model_to_ignore_movement>fetch,rgb_cam,demo_table1,ground_plane,rubbish_bin1</model_to_ignore_movement>
+      
+      
+      <x_max>0.5</x_max>
+      <x_min>0.3</x_min>
+      <y_max>0.5</y_max>
+      <y_min>0.1</y_min>
+      <z_max>0.64</z_max>
+      <z_min>0.64</z_min>
+      
+      <x_max_distractors>0.5</x_max_distractors>
+      <x_min_distractors>0.1</x_min_distractors>
+      <y_max_distractors>0.5</y_max_distractors>
+      <y_min_distractors>0.1</y_min_distractors>
+      <z_max_distractors>0.64</z_max_distractors>
+      <z_min_distractors>0.64</z_min_distractors>
+
+      <z_increment_percentage>0.08</z_increment_percentage>
+
+      
+      <roll_max>0.0</roll_max>
+      <roll_min>0.0</roll_min>
+      <pitch_max>0.0</pitch_max>
+      <pitch_min>0.0</pitch_min>
+      <yaw_max>0.0</yaw_max>
+      <yaw_min>0.0</yaw_min>
+
+      <light_x_max>0.3</light_x_max>
+      <light_x_min>0.3</light_x_min>
+      <light_y_max>0.3</light_y_max>
+      <light_y_min>0.3</light_y_min>
+      <light_z_max>2.0</light_z_max>
+      <light_z_min>2.0</light_z_min>
+
+      <light_roll_max>0.0</light_roll_max>
+      <light_roll_min>0.0</light_roll_min>
+      <light_pitch_max>0.0</light_pitch_max>
+      <light_pitch_min>0.0</light_pitch_min>
+      <light_yaw_max>0.0</light_yaw_max>
+      <light_yaw_min>0.0</light_yaw_min>
+    
+
+      <cam_x_max>-0.215121</cam_x_max>
+      <cam_x_min>-0.215121</cam_x_min>
+      <cam_y_max>0.3</cam_y_max>
+      <cam_y_min>0.3</cam_y_min>
+      <cam_z_max>1.092078</cam_z_max>
+      <cam_z_min>1.092078</cam_z_min>
+
+      <cam_roll_max>0.0</cam_roll_max>
+      <cam_roll_min>0.0</cam_roll_min>
+      <cam_pitch_max>0.6991</cam_pitch_max>
+      <cam_pitch_min>0.6991</cam_pitch_min>
+      <cam_yaw_max>0.0</cam_yaw_max>
+      <cam_yaw_min>0.0</cam_yaw_min>
+      
+      <alpha>0.5</alpha>
+      <beta>0.5</beta>
+      <random_distribution_type>uniform</random_distribution_type>
+      
+      <colour_randomiser_active>yes</colour_randomiser_active>
+
+
+    </plugin>
+
+  </world>
+</sdf>

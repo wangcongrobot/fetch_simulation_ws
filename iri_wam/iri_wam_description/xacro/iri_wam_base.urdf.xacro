@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:property name="base_mass" value="20"/>
+  <xacro:property name="base_cg_x" value="0.0"/>
+  <xacro:property name="base_cg_y" value="0.0"/>
+  <xacro:property name="base_cg_z" value="0.0"/>
+
+  <xacro:macro name="wambase" params="prefix">
+    <link name="${prefix}_link_base">
+        <inertial>
+            <mass value="${base_mass}" />
+            <origin xyz="${base_cg_x} ${base_cg_y} ${base_cg_z}" />
+            <inertia ixx="0.5" ixy="0.0" ixz="0.0"
+                     iyy="0.5" iyz="0.0"
+                     izz="0.5" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://iri_wam_description/mesh/wambase.stl" scale="1.0 1.0 1.0" />
+            </geometry>
+            <material name="Grey" >
+                <color rgba="0.75 0.75 0.75 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://iri_wam_description/mesh/wambase_collision.stl" scale="1.0 1.0 1.0" />
+            </geometry>
+            <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+        </collision>
+    </link>
+
+    <link name="${prefix}_link_footprint"/>
+
+    <joint name="${prefix}_joint_footprint" type="fixed">
+        <origin xyz="0.22 0.14 0.346" rpy="0 0 0" />
+        <child link="${prefix}_link_base"/>
+        <parent link="${prefix}_link_footprint"/>
+    </joint>
+
+    <gazebo reference="${prefix}_link_base">
+        <selfCollide>true</selfCollide>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- Start World -->
+    <include file="$(find fetch_simple_description)/launch/start_HER_world.launch"/>
+    <!-- Put Fetch In World -->
+    <include file="$(find fetch_gazebo)/launch/put_fetch_in_world.launch"/>
+
+</launch>

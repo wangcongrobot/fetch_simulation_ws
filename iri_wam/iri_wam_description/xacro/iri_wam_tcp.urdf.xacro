@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:macro name="wamtcp" params="prefix parent">
+
+    <link name="${prefix}_link_tcp" />
+    
+    <joint name="${prefix}_joint_tcp" type="fixed" >
+      <parent link="${parent}" />
+      <child link="${prefix}_link_tcp" />
+      <origin xyz="0.0 0.0 0.06" rpy="0 0 0" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>
